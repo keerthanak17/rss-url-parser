@@ -39,14 +39,15 @@ class ArrayFunction {
       return array;
     }
   };
-  arrayReduce = (array, callback) => {
+  arrayReduce = (array, callback, initialVal) => {
     length = array.length;
     if (typeof callback != "function" || !length) {
       throw new TypeError();
     } else {
-      let i, accumulator;
+      let i,
+        accumulator = initialVal;
       for (i = 0; i < length; i++) {
-        accumulator = callback(array[i]);
+        accumulator = callback(accumulator, array[i]);
       }
       return accumulator;
     }
